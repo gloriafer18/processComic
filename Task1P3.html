@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Panels</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .panel1, .panel2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      border: 1px solid #ccc;
+    }
+    .panel1 {
+      top: 0;
+      width: 400px;
+      height: 133px;
+    }
+    .panel2 {
+      top: 137px;
+      width: 400px;
+      height: 406px;
+    }
+    .scroll-container-horizontal {
+      display: flex;
+      overflow-x: auto;
+      height: 100%;
+    }
+    .scroll-container-vertical {
+      display: block;
+      overflow-y: auto;
+      height: 100%;
+    }
+    /* img {
+      cursor: pointer;
+      width: 95%;
+      height: 95%;
+      object-fit: cover;
+    } */
+    .scroll-container-horizontal img {
+      height: 95%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .scroll-container-vertical img {
+      width: 95%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    img.highlight {
+      border: 3px solid orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel1">
+    <div class="scroll-container-horizontal">
+      <img src="assets/p1img1.jpg" alt="Image 1" onclick="highlightImage(0)">
+      <img src="assets/p1img2.jpg" alt="Image 2" onclick="highlightImage(1)">
+      <img src="assets/p1img3.jpg" alt="Image 3" onclick="highlightImage(2)">
+      <img src="assets/p1img4.jpg" alt="Image 4" onclick="highlightImage(3)">
+      <img src="assets/p1img5.jpg" alt="Image 5" onclick="highlightImage(4)">
+    </div>
+  </div>
+
+  <div class="panel2">
+    <div class="scroll-container-vertical">
+      <img src="assets/p2img1.jpg" alt="Image 1">
+      <img src="assets/p2img2.jpg" alt="Image 2">
+      <img src="assets/p2img3.jpg" alt="Image 3">
+      <img src="assets/p2img4.jpg" alt="Image 4">
+      <img src="assets/p2img5.jpg" alt="Image 5">
+    </div>
+  </div>
+
+  <script>
+    function highlightImage(index) {
+      
+      const panel1Images = document.querySelectorAll('.panel1 img');
+      const panel2Images = document.querySelectorAll('.panel2 img');
+
+      const panel1Container = document.querySelector('.scroll-container-horizontal');
+      const panel2Container = document.querySelector('.scroll-container-vertical');
+
+      // Highlight and scroll in Panel 1
+      panel1Images.forEach((img, i) => {
+        if (i === index) {
+          img.classList.add('highlight');
+          img.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        } else {
+          img.classList.remove('highlight');
+        }
+      });
+      
+      // Scroll Panel 2 to the left-hand side
+      
+      const selectedImage = panel1Images[index];
+      const containerRect = panel1Container.getBoundingClientRect();
+      const imgRect = selectedImage.getBoundingClientRect();
+      const scrollLeft = imgRect.left - containerRect.left + panel1Container.scrollLeft;
+      panel1Container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+
+
+      // Highlight and scroll in Panel 2
+      panel2Images.forEach((img, i) => {
+        if (i === index) {
+          img.classList.add('highlight');
+          img.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          img.classList.remove('highlight');
+        }
+      });
+
+      // Scroll Panel 2 to the top
+      const selectedImage2 = panel2Images[index];
+      const containerRect2 = panel2Container.getBoundingClientRect();
+      const imgRect2 = selectedImage2.getBoundingClientRect();
+      const scrollTop = panel2Container.scrollTop + (imgRect2.top - containerRect2.top);
+      panel2Container.scrollTo({ top: scrollTop, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
+
+
