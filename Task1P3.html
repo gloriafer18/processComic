@@ -10,7 +10,7 @@
       font-family: Arial, sans-serif;
     }
     .panel1, .panel2 {
-      position: absolute;
+      #position: absolute;
       top: 0;
       left: 0;
       overflow: hidden;
@@ -59,27 +59,18 @@
 </head>
 <body>
   <div class="panel1">
-    <div class="scroll-container-horizontal">
-      <img src="assets/p1img1.jpg" alt="Image 1" onclick="highlightImage(0)">
-      <img src="assets/p1img2.jpg" alt="Image 2" onclick="highlightImage(1)">
-      <img src="assets/p1img3.jpg" alt="Image 3" onclick="highlightImage(2)">
-      <img src="assets/p1img4.jpg" alt="Image 4" onclick="highlightImage(3)">
-      <img src="assets/p1img5.jpg" alt="Image 5" onclick="highlightImage(4)">
+    <div class="scroll-container-horizontal" id="horizontal_div_menu">
     </div>
   </div>
 
   <div class="panel2">
-    <div class="scroll-container-vertical">
-      <img src="assets/p2img1.jpg" alt="Image 1">
-      <img src="assets/p2img2.jpg" alt="Image 2">
-      <img src="assets/p2img3.jpg" alt="Image 3">
-      <img src="assets/p2img4.jpg" alt="Image 4">
-      <img src="assets/p2img5.jpg" alt="Image 5">
+    <div class="scroll-container-vertical" id="main_panel_images">
+      
     </div>
   </div>
 
   <script>
-    function highlightImage(index) {
+    let highlightImage = (index) => {
       
       const panel1Images = document.querySelectorAll('.panel1 img');
       const panel2Images = document.querySelectorAll('.panel2 img');
@@ -122,7 +113,40 @@
       const imgRect2 = selectedImage2.getBoundingClientRect();
       const scrollTop = panel2Container.scrollTop + (imgRect2.top - containerRect2.top);
       panel2Container.scrollTo({ top: scrollTop, behavior: 'smooth' });
-    }
+    };
+
+    let appendImagesByDivId = (images, divId) => {
+      panel = document.getElementById(divId);
+
+      images.forEach((img) => {
+        image = document.createElement('img');
+        image.src = img;
+        panel.appendChild(image);
+      });
+    };
+
+    let appendImagesToMenu = (images) => {
+      panel = document.getElementById('horizontal_div_menu');
+
+      images.forEach((img, index) => {
+        image = document.createElement('img');
+        image.src = img;
+        image.onclick = () => highlightImage(index)
+        panel.appendChild(image);
+      });
+    };
+    
+    let images = ["assets/p2img1.jpg","assets/p2img2.jpg","assets/p2img3.jpg","assets/p2img4.jpg","assets/p2img5.jpg"]
+    appendImagesByDivId(images, 'main_panel_images');
+
+    appendImagesToMenu(["assets/p1img1.jpg", "assets/p1img2.jpg", "assets/p1img3.jpg", "assets/p1img4.jpg","assets/p1img5.jpg",]);
+
+      // <img src="assets/p1img1.jpg" alt="Image 1" onclick="highlightImage(0)">
+      // <img src="assets/p1img2.jpg" alt="Image 2" onclick="highlightImage(1)">
+      // <img src="assets/p1img3.jpg" alt="Image 3" onclick="highlightImage(2)">
+      // <img src="assets/p1img4.jpg" alt="Image 4" onclick="highlightImage(3)">
+      // <img src="assets/p1img5.jpg" alt="Image 5" onclick="highlightImage(4)">
+
   </script>
 </body>
 </html>
