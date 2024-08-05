@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Panels</title>
+  <h1>Task 1. Prototype 4. Process Comics and screenshots.</h1>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .panel1, .panel2, .process-title {
+      #position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      border-top: 0px;
+      border-bottom: 0px;
+      width: 508px;
+      background: #fcfafa;
+    }
+    .panel1 {
+      top: 0;
+      --width: 400px;
+      --height: 133px;
+      height: 108px;
+      border-top: 1px solid #ccc;
+    }
+    .panel2 {
+      top: 137px;
+      --width: 400px;
+      height: 406px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .scroll-container-horizontal {
+      display: flex;
+      --overflow-x: auto;
+      height: 100%;
+      padding: 2px;
+    }
+    .scroll-container-vertical {
+      display: block;
+      overflow-y: auto;
+      height: 100%;
+    }
+    /* img {
+      cursor: pointer;
+      width: 95%;
+      height: 95%;
+      object-fit: cover;
+    } */
+    .scroll-container-horizontal img {
+      height: 95%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .scroll-container-vertical img {
+      --width: 95%;
+      width: 75%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .process-title {
+      --height: 43px;
+      height: 43px;
+      --width: 401px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+    #main-panel-title {
+      height: 100%;
+    }
+    #main-panel-title img {
+      height: 95%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    img.highlight {
+      --border: 3px solid #1103664d;
+      box-shadow: 0px 0px 8px 1px #1103664d
+    }
+    img.opacity {
+      opacity: 0.85;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panel1">
+    <div class="scroll-container-horizontal" id="horizontal-div-menu">
+    </div>
+  </div>
+
+  <div class="process-title">
+    <div id="main-panel-title">
+    </div>
+  </div>
+
+  <div class="panel2">
+    <div class="scroll-container-vertical" id="main-panel-images">
+      
+    </div>
+  </div>
+
+  <script>
+    let highlightImage = (index) => {
+      
+      const panel1Images = document.querySelectorAll('.panel1 img');
+      const panel2Images = document.querySelectorAll('.panel2 img');
+
+      const panel1Container = document.querySelector('.scroll-container-horizontal');
+      const panel2Container = document.querySelector('.scroll-container-vertical');
+
+      // Highlight and scroll in Panel 1
+      panel1Images.forEach((img, i) => {
+        if (i === index) {
+          img.classList.add('highlight');
+          img.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        } else {
+          img.classList.remove('highlight');
+        }
+      });
+      
+      // Scroll Panel 2 to the left-hand side
+      
+      const selectedImage = panel1Images[index];
+      const containerRect = panel1Container.getBoundingClientRect();
+      const imgRect = selectedImage.getBoundingClientRect();
+      const scrollLeft = imgRect.left - containerRect.left + panel1Container.scrollLeft;
+      panel1Container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+
+
+      // Highlight and scroll in Panel 2
+      panel2Images.forEach((img, i) => {
+        if (i === index) {
+          img.classList.add('highlight');
+          img.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          img.classList.remove('highlight');
+        }
+      });
+
+      // Scroll Panel 2 to the top
+      const selectedImage2 = panel2Images[index];
+      const containerRect2 = panel2Container.getBoundingClientRect();
+      const imgRect2 = selectedImage2.getBoundingClientRect();
+      const scrollTop = panel2Container.scrollTop + (imgRect2.top - containerRect2.top) - 5;
+      panel2Container.scrollTo({ top: scrollTop, behavior: 'smooth' });
+    };
+
+    let appendImagesByDivId = (images, divId) => {
+      panel = document.getElementById(divId);
+
+      images.forEach((img) => {
+        image = document.createElement('img');
+        image.src = img;
+        image.id = img;
+        panel.appendChild(image);
+      });
+    };
+
+    let appendImagesToMenu = (images) => {
+      panel = document.getElementById('horizontal-div-menu');
+
+      images.forEach((img, index) => {
+        image = document.createElement('img');
+        image.src = img;
+        image.onclick = () => highlightImage(index)
+        panel.appendChild(image);
+      });
+    };
+
+    let appendImageToTitle = (img) => {
+      panel = document.getElementById('main-panel-title');
+      image = document.createElement('img');
+      image.src = img;
+      panel.appendChild(image);
+    }
+  
+    const prototypePath = "assets/Task_1/Prototypes_2_4/";
+    const menu = "assets/Task_1/Menu/"; 
+
+    appendImageToTitle(prototypePath + "title.png"); 
+    let images = [prototypePath + "1.png", prototypePath + "2.png", prototypePath + "3.png", prototypePath + "4.png", prototypePath + "5.png", prototypePath + "6.png",]
+    appendImagesByDivId(images, 'main-panel-images');
+    
+    let menuImages = [menu + "1_menu.png", menu+"2_menu.png", menu+"3_menu.png", menu+"4_menu.png", menu+"5_menu.png", menu+"6_menu.png"]
+    appendImagesToMenu(menuImages);
+
+  </script>
+</body>
+</html>
