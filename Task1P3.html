@@ -15,6 +15,7 @@
       left: 0;
       overflow: hidden;
       border: 1px solid #ccc;
+      border-top: 0px;
     }
     .panel1 {
       top: 0;
@@ -53,6 +54,21 @@
       object-fit: cover;
       cursor: pointer;
     }
+    .process-title {
+      height: 43px;
+      width: 401px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+    #main-panel-title {
+      height: 100%;
+    }
+    #main-panel-title img {
+      height: 95%;
+      object-fit: cover;
+      cursor: pointer;
+    }
     img.highlight {
       border: 3px solid orange;
     }
@@ -60,12 +76,17 @@
 </head>
 <body>
   <div class="panel1">
-    <div class="scroll-container-horizontal" id="horizontal_div_menu">
+    <div class="scroll-container-horizontal" id="horizontal-div-menu">
+    </div>
+  </div>
+
+  <div class="process-title">
+    <div id="main-panel-title">
     </div>
   </div>
 
   <div class="panel2">
-    <div class="scroll-container-vertical" id="main_panel_images">
+    <div class="scroll-container-vertical" id="main-panel-images">
       
     </div>
   </div>
@@ -122,12 +143,13 @@
       images.forEach((img) => {
         image = document.createElement('img');
         image.src = img;
+        image.id = img;
         panel.appendChild(image);
       });
     };
 
     let appendImagesToMenu = (images) => {
-      panel = document.getElementById('horizontal_div_menu');
+      panel = document.getElementById('horizontal-div-menu');
 
       images.forEach((img, index) => {
         image = document.createElement('img');
@@ -136,10 +158,17 @@
         panel.appendChild(image);
       });
     };
-    
+
+    let appendImageToTitle = (img) => {
+      panel = document.getElementById('main-panel-title');
+      image = document.createElement('img');
+      image.src = img;
+      panel.appendChild(image);
+    }
+    appendImageToTitle("assets/Prototypes_1_3/title.png"); 
     // let images = ["assets/p2img1.jpg","assets/p2img2.jpg","assets/p2img3.jpg","assets/p2img4.jpg","assets/p2img5.jpg"]
     let images = ["assets/Prototypes_1_3/1.png", "assets/Prototypes_1_3/2.png", "assets/Prototypes_1_3/3.png", "assets/Prototypes_1_3/4.png", "assets/Prototypes_1_3/5.png", "assets/Prototypes_1_3/6.png",]
-    appendImagesByDivId(images, 'main_panel_images');
+    appendImagesByDivId(images, 'main-panel-images');
 
     appendImagesToMenu(["assets/Prototypes_1_3/1_menu.png", "assets/Prototypes_1_3/2_menu.png", "assets/Prototypes_1_3/3_menu.png", "assets/Prototypes_1_3/4_menu.png", "assets/Prototypes_1_3/5_menu.png",  "assets/Prototypes_1_3/6_menu.png" ]);
 
