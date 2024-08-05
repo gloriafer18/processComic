@@ -147,7 +147,6 @@
       const containerRect2 = panel2Container.getBoundingClientRect();
       const imgRect2 = selectedImage2.getBoundingClientRect();
       const scrollTop = panel2Container.scrollTop + (imgRect2.top - containerRect2.top) - 5;
-      console.log(scrollTop);
       panel2Container.scrollTo({ top: scrollTop, behavior: 'smooth' });
     };
 
@@ -179,12 +178,16 @@
       image.src = img;
       panel.appendChild(image);
     }
-    appendImageToTitle("assets/Prototypes_1_3/title.png"); 
-    // let images = ["assets/p2img1.jpg","assets/p2img2.jpg","assets/p2img3.jpg","assets/p2img4.jpg","assets/p2img5.jpg"]
-    let images = ["assets/Prototypes_1_3/1.png", "assets/Prototypes_1_3/2.png", "assets/Prototypes_1_3/3.png", "assets/Prototypes_1_3/4.png", "assets/Prototypes_1_3/5.png", "assets/Prototypes_1_3/6.png",]
-    appendImagesByDivId(images, 'main-panel-images');
+  
+    const prototypePath = "assets/Task_1/Prototypes_1_3/";
+    const menu = "assets/Task_1/Menu/"; 
 
-    appendImagesToMenu(["assets/Prototypes_1_3/1_menu.png", "assets/Prototypes_1_3/2_menu.png", "assets/Prototypes_1_3/3_menu.png", "assets/Prototypes_1_3/4_menu.png", "assets/Prototypes_1_3/5_menu.png",  "assets/Prototypes_1_3/6_menu.png" ]);
+    appendImageToTitle(prototypePath + "title.png"); 
+    let images = [prototypePath + "1.png", prototypePath + "2.png", prototypePath + "3.png", prototypePath + "4.png", prototypePath + "5.png", prototypePath + "6.png",]
+    appendImagesByDivId(images, 'main-panel-images');
+    
+    let menuImages = [menu + "1_menu.png", menu+"2_menu.png", menu+"3_menu.png", menu+"4_menu.png", menu+"5_menu.png", menu+"6_menu.png"]
+    appendImagesToMenu(menuImages);
 
   </script>
 </body>
