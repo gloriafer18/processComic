@@ -9,29 +9,35 @@
     body {
       font-family: Arial, sans-serif;
     }
-    .panel1, .panel2 {
+    .panel1, .panel2, .process-title {
       #position: absolute;
       top: 0;
       left: 0;
       overflow: hidden;
       border: 1px solid #ccc;
       border-top: 0px;
+      border-bottom: 0px;
+      width: 508px;
     }
     .panel1 {
       top: 0;
-      width: 400px;
-      height: 133px;
+      --width: 400px;
+      --height: 133px;
+      height: 108px;
+      border-top: 1px solid #ccc;
     }
     .panel2 {
       top: 137px;
-      width: 400px;
+      --width: 400px;
       height: 406px;
       text-align: center;
+      border-bottom: 1px solid #ccc;
     }
     .scroll-container-horizontal {
       display: flex;
-      overflow-x: auto;
+      --overflow-x: auto;
       height: 100%;
+      padding: 2px;
     }
     .scroll-container-vertical {
       display: block;
@@ -50,13 +56,15 @@
       cursor: pointer;
     }
     .scroll-container-vertical img {
-      width: 95%;
+      --width: 95%;
+      width: 75%;
       object-fit: cover;
       cursor: pointer;
     }
     .process-title {
+      --height: 43px;
       height: 43px;
-      width: 401px;
+      --width: 401px;
       text-align: center;
       border-right: 1px solid #ccc;
       border-left: 1px solid #ccc;
@@ -70,8 +78,13 @@
       cursor: pointer;
     }
     img.highlight {
-      border: 3px solid orange;
+      --border: 3px solid #1103664d;
+      box-shadow: 0px 0px 8px 1px #1103664d
     }
+    img.opacity {
+      opacity: 0.85;
+    }
+
   </style>
 </head>
 <body>
@@ -133,7 +146,8 @@
       const selectedImage2 = panel2Images[index];
       const containerRect2 = panel2Container.getBoundingClientRect();
       const imgRect2 = selectedImage2.getBoundingClientRect();
-      const scrollTop = panel2Container.scrollTop + (imgRect2.top - containerRect2.top);
+      const scrollTop = panel2Container.scrollTop + (imgRect2.top - containerRect2.top) - 5;
+      console.log(scrollTop);
       panel2Container.scrollTo({ top: scrollTop, behavior: 'smooth' });
     };
 
