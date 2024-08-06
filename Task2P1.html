@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Panels</title>
-  <h1>Task 1. P4. Process Comics and screenshots.</h1>
+  <h1>Task 2. P1. Conventional process flow.</h1>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,7 +17,7 @@
       border: 1px solid #ccc;
       border-top: 0px;
       border-bottom: 0px;
-      width: 508px;
+      width: 795px;
       background: #fcfafa;
     }
     .panel1 {
@@ -30,7 +30,7 @@
     .panel2 {
       top: 137px;
       --width: 400px;
-      height: 460px;
+      height: 440px;
       text-align: center;
       border-bottom: 1px solid #ccc;
     }
@@ -58,7 +58,7 @@
     }
     .scroll-container-vertical img {
       --width: 95%;
-      width: 97%;
+      width: 90%;
       object-fit: cover;
       cursor: pointer;
     }
@@ -74,12 +74,12 @@
       height: 100%;
     }
     #main-panel-title img {
-      height: 95%;
+      height: 144%;
       object-fit: cover;
       cursor: pointer;
     }
     img.highlight {
-      --border: 3px solid #1103664d;
+      --border: 3px solid #2525264d;
       box-shadow: 0px 0px 8px 1px #1103664d
     }
     img.opacity {
@@ -180,16 +180,18 @@
       panel.appendChild(image);
     }
   
-    const prototypePath = "assets/Task_1/T1P4Images/";
-    const menu = "assets/Task_1/Menu/";
+    const prototypePath = "assets/Task_2/T2P1Images/";
+    const menu = "assets/Task_2/Menu/"; 
 
     appendImageToTitle(prototypePath + "title.png"); 
-    let images = [prototypePath + "1.png", prototypePath + "2.png", prototypePath + "3.png", prototypePath + "4.png", prototypePath + "5.png", prototypePath + "6.png",]
+    let images = [prototypePath + "1.png", prototypePath + "2.png", prototypePath + "3.png", prototypePath + "4.png", prototypePath + "5.png", prototypePath + "6.png", prototypePath + "7.png", prototypePath + "8.png"]
     appendImagesByDivId(images, 'main-panel-images');
     
-    let menuImages = [menu + "1_menu.png", menu+"2_menu.png", menu+"3_menu.png", menu+"4_menu.png", menu+"5_menu.png", menu+"6_menu.png"]
+    let menuImages = [menu + "1.png", menu+"2.png", menu+"3.png", menu+"4.png", menu+"5.png", menu+"6.png", menu+"7.png", menu+"8.png"]
     appendImagesToMenu(menuImages);
 
   </script>
 </body>
 </html>
+
+
