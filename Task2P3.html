@@ -16,8 +16,9 @@
       border: 1px solid #ccc;
       border-top: 0px;
       border-bottom: 0px;
-      width: 795px;
+      width: 650px;
       background: #fcfafa;
+      text-align: center;
     }
     .panel1 {
       top: 0;
@@ -34,7 +35,6 @@
       border-bottom: 1px solid #ccc;
     }
     .scroll-container-horizontal {
-      display: flex;
       --overflow-x: auto;
       height: 100%;
       padding: 2px;
@@ -57,7 +57,7 @@
     }
     .scroll-container-vertical img {
       --width: 95%;
-      width: 60%;
+      width: 75%;
       object-fit: cover;
       cursor: pointer;
     }
@@ -73,7 +73,7 @@
       height: 100%;
     }
     #main-panel-title img {
-      height: 120%;
+      height: 100%;
       object-fit: cover;
       cursor: pointer;
     }
@@ -183,10 +183,10 @@
     const menu = "assets/Task_2/Menu/"; 
 
     appendImageToTitle(prototypePath + "title.png"); 
-    let images = [prototypePath + "1.png", prototypePath + "2.png", prototypePath + "3.png", prototypePath + "4.png", prototypePath + "5.png", prototypePath + "6.png", prototypePath + "7.png", prototypePath + "8.png"]
+    let images = [prototypePath + "1.png", prototypePath + "2.png", prototypePath + "3.png", prototypePath + "4.png", prototypePath + "5.png", prototypePath + "6.png"]
     appendImagesByDivId(images, 'main-panel-images');
     
-    let menuImages = [menu + "1.png", menu+"2.png", menu+"3.png", menu+"4.png", menu+"5.png", menu+"6.png", menu+"7.png", menu+"8.png"]
+    let menuImages = [menu + "1.png", menu+"2.png", menu+"3.png", menu+"4.png", menu+"5.png", menu+"6.png"]
     appendImagesToMenu(menuImages);
 
   </script>
